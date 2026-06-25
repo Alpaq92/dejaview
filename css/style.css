@@ -103,6 +103,7 @@ input[type="search"] { flex: 1; }
   padding: 24px;
 }
 #stage { position: relative; line-height: 0; box-shadow: 0 4px 24px #00000060; }
+#viewport:not(.has-doc) #stage { display: none; }
 #page { display: block; background: #fff; }
 
 #textLayer {

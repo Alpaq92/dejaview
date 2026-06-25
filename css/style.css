@@ -64,7 +64,9 @@ input[type="number"], input[type="search"] {
 }
 input[type="number"]:focus, input[type="search"]:focus { outline: none; border-color: var(--accent); }
 input::placeholder { color: var(--muted); }
-input[type="number"] { width: 56px; text-align: right; }
+input[type="number"] { width: 52px; text-align: center; -moz-appearance: textfield; appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; appearance: none; margin: 0; }
 input[type="search"] { flex: 1; }
 #zoomLabel, #pageCount { color: var(--muted); min-width: 38px; text-align: center; }
 #searchInfo { color: var(--muted); white-space: nowrap; }
@@ -79,7 +81,8 @@ input[type="search"] { flex: 1; }
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-right: 1px solid #00000040;
+  border-left: 1px solid #00000040;
+  order: 1; /* thumbnail rail sits to the right of the viewport */
 }
 #thumbs.hidden { display: none; }
 .thumb {
@@ -92,6 +95,20 @@ input[type="search"] { flex: 1; }
 }
 .thumb.active { border-color: var(--accent); }
 .thumb-wrap { text-align: center; color: var(--muted); font-size: 12px; }
+
+/* Thin, theme-matching scrollbars instead of the chunky stepper-arrow OS bars. */
+#viewport, #thumbs { scrollbar-width: thin; scrollbar-color: #707682 transparent; }
+#viewport::-webkit-scrollbar, #thumbs::-webkit-scrollbar { width: 12px; height: 12px; }
+#viewport::-webkit-scrollbar-track, #thumbs::-webkit-scrollbar-track { background: transparent; }
+#viewport::-webkit-scrollbar-thumb, #thumbs::-webkit-scrollbar-thumb {
+  background: #707682; background-clip: content-box;
+  border: 3px solid transparent; border-radius: 7px;
+}
+#viewport::-webkit-scrollbar-thumb:hover, #thumbs::-webkit-scrollbar-thumb:hover {
+  background: #8c939d; background-clip: content-box;
+}
+#viewport::-webkit-scrollbar-button, #thumbs::-webkit-scrollbar-button { width: 0; height: 0; display: none; }
+#viewport::-webkit-scrollbar-corner, #thumbs::-webkit-scrollbar-corner { background: transparent; }
 
 #viewport {
   flex: 1;

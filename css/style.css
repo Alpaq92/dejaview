@@ -98,11 +98,12 @@ input[type="search"] { flex: 1; }
   overflow: auto;
   background: var(--page-area);
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
   padding: 24px;
 }
-#stage { position: relative; line-height: 0; box-shadow: 0 4px 24px #00000060; }
+/* margin:auto centres the page on both axes (equal top/bottom & left/right
+   margins) yet collapses to 0 when the page is larger than the viewport, so the
+   top stays reachable when zoomed in — unlike align-items:center, which clips. */
+#stage { position: relative; line-height: 0; box-shadow: 0 4px 24px #00000060; margin: auto; }
 #viewport:not(.has-doc) #stage { display: none; }
 #page { display: block; background: #fff; }
 

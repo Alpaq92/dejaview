@@ -35,7 +35,7 @@ wavelet design (L. Bottou et al.) and match DjvuNet's.
 JPEG layers (BGjp / FGjp)
 -------------------------
 JPEG-layer decoding uses, as a fallback, JsPeg — a pure-JavaScript JPEG decoder
-vendored under src/jspeg/ (decode path only). JsPeg is MIT-licensed
+vendored under src/jspeg/ (decode path only, synced from commit a0d19f1). JsPeg is MIT-licensed
 (https://github.com/Alpaq92/JsPeg), a port of yigolden/JpegLibrary (also MIT);
 its inverse DCT is ported from stb_image (Sean Barrett), released into the public
 domain. JsPeg therefore carries no obligations beyond the MIT terms:

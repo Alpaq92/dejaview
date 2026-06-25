@@ -45,12 +45,19 @@
         <div id="highlights"></div>
       </div>
       <div id="dropHint">
-        <div>
-          <h1>DejaView</h1>
-          <p>A pure-JavaScript DjVu reader.</p>
-          <p>Drop a <code>.djvu</code> file here, or <button id="openInline">choose a file</button>.</p>
-          <p><button id="loadSample" class="cta">Load a sample document</button></p>
-          <p class="muted">No plugins, no server — everything decodes in your browser.</p>
+        <div id="openZone">
+          <svg class="cloud-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 16l-4-4-4 4" /><path d="M12 12v9" />
+            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+          </svg>
+          <h1>Open document</h1>
+          <p class="sub">Drop a <code>.djvu</code> file here, or <button id="openInline" class="linkbtn">browse</button></p>
+          <div class="formats" aria-hidden="true">
+            <span class="fmt b1">JB2</span><span class="fmt b2">IW44</span><span class="fmt b3">MMR</span>
+            <span class="fmt b4">JPEG</span><span class="fmt b5">BZZ</span><span class="fmt b6">ZP</span>
+            <span class="fmt b7">TEXT</span><span class="fmt b8">ANNOT</span>
+          </div>
+          <p class="powered">Pure-JavaScript DjVu — every layer, zero dependencies&nbsp;·&nbsp;<button id="loadSample" class="linkbtn">try a sample&nbsp;→</button></p>
         </div>
       </div>
     </main>

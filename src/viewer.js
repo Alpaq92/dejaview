@@ -79,6 +79,7 @@ async function loadBuffer(buf, name) {
   state.matches = [];
   state.matchPos = -1;
   els.viewport.classList.add('has-doc');
+  document.body.classList.add('has-doc');
   els.pageCount.textContent = '/ ' + state.pageCount;
   els.thumbs.innerHTML = '';
   els.search.value = '';

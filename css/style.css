@@ -134,19 +134,36 @@ input[type="search"] { flex: 1; }
   justify-content: center;
   text-align: center;
   color: var(--muted);
-  pointer-events: none;
+  padding: 24px;
 }
-#dropHint button { pointer-events: auto; }
-#dropHint .cta {
-  margin-top: 4px; padding: 9px 18px; font-weight: 600;
-  background: var(--accent); color: #fff;
+#openZone {
+  width: min(640px, 100%);
+  border: 2px dashed #6b7078;
+  border-radius: 14px;
+  padding: 44px 32px;
+  background: #ffffff05;
+  transition: border-color 0.15s, background 0.15s;
 }
-#dropHint .cta:hover { background: var(--accent-soft); color: #10131a; }
-#dropHint h1 { color: var(--fg); margin: 0 0 8px; font-size: 28px; }
-#dropHint .muted { font-size: 12px; }
-#dropHint code { background: #00000040; padding: 1px 5px; border-radius: 4px; }
+.cloud-icon { width: 60px; height: 60px; color: var(--accent-soft); }
+#dropHint h1 { color: var(--fg); margin: 14px 0 4px; font-size: 23px; font-weight: 600; }
+#dropHint .sub { font-size: 14px; margin: 0 0 22px; }
+#dropHint .sub code { background: #00000040; padding: 1px 6px; border-radius: 4px; color: var(--fg); }
+.linkbtn {
+  background: none; border: none; color: var(--accent-soft); cursor: pointer;
+  font: inherit; padding: 0; min-height: 0; text-decoration: underline;
+}
+.linkbtn:hover:not(:disabled) { background: none; color: #fff; }
+.formats { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin: 0 auto 22px; max-width: 460px; }
+.fmt { font-size: 11.5px; font-weight: 700; letter-spacing: 0.03em; color: #fff; padding: 4px 11px; border-radius: 6px; }
+.fmt.b1 { background: #1e88e5; } .fmt.b2 { background: #7e57c2; } .fmt.b3 { background: #f4511e; }
+.fmt.b4 { background: #e53935; } .fmt.b5 { background: #43a047; } .fmt.b6 { background: #00897b; }
+.fmt.b7 { background: #fb8c00; } .fmt.b8 { background: #d81b60; }
+#dropHint .powered { font-size: 12px; color: var(--muted); margin: 0; }
 #viewport.has-doc #dropHint { display: none; }
-#viewport.drag-over { outline: 3px dashed var(--accent); outline-offset: -10px; }
+#viewport.drag-over #openZone { border-color: var(--accent); background: rgba(30, 136, 229, 0.08); }
+
+body:not(.has-doc) #toolbar { display: none; }
+body:not(.has-doc) #body { height: 100%; }
 
 #status {
   position: fixed;

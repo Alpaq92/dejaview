@@ -43,7 +43,7 @@ implemented here in pure JS:
 | Bitonal mask | `Sjbz` / `Djbz` | `src/jb2.js` | JB2 text/line layer (symbol dictionary + cross-coding) |
 | Bitonal mask (fax) | `Smmr` | `src/mmr.js` | CCITT Group 4 / ITU-T T.6 |
 | Colour / photo | `BG44` / `FG44` | `src/iw44.js` | IW44 progressive wavelet image |
-| Colour / photo (JPEG) | `BGjp` / `FGjp` | `src/jpeg.js` | hybrid: native `createImageBitmap` when available, else a vendored pure-JS decoder |
+| Colour / photo (JPEG) | `BGjp` / `FGjp` | `src/jpeg.js`, `src/jspeg/` | hybrid: native `createImageBitmap` when available, else the vendored pure-JS [JsPeg](https://github.com/Alpaq92/JsPeg) decoder |
 | Foreground colour | `FGbz` | `src/color.js` | DjVuPalette (per-blit colours) |
 | Hidden text | `TXTz` / `TXTa` | `src/text.js` | UTF-8 text + zone tree with bounding boxes |
 | Annotations | `ANTz` / `ANTa` | `src/annotations.js` | background colour, metadata |
@@ -95,10 +95,9 @@ node tests/stress.mjs <file>  # decode every page of a document
 
 ## License & provenance
 
-**MIT** — see [LICENSE](LICENSE). One vendored file, `src/jpeg.js` (the pure-JS
-JPEG fallback, from jpeg-js), is permissively dual-licensed — **Apache-2.0**
-(decoder core, © notmasteryet) and **BSD-3-Clause** (jpeg-js packaging, © Eugene
-Ware); see [NOTICE](NOTICE) and `LICENSES/`.
+**MIT** — see [LICENSE](LICENSE). The pure-JS JPEG fallback is vendored under
+`src/jspeg/` from **[JsPeg](https://github.com/Alpaq92/JsPeg)** (also **MIT**);
+see [NOTICE](NOTICE).
 
 DejaView's decoder is verified against the published DjVu specification
 section-by-section — see [CONFORMANCE.md](CONFORMANCE.md).

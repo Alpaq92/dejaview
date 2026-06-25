@@ -34,19 +34,18 @@ wavelet design (L. Bottou et al.) and match DjvuNet's.
 
 JPEG layers (BGjp / FGjp)
 -------------------------
-JPEG-layer decoding uses, as a fallback, a vendored pure-JS decoder at
-src/jpeg.js, taken from jpeg-js (https://github.com/jpeg-js/jpeg-js). That file
-is dual-provenance; both licenses apply and both are permissive:
+JPEG-layer decoding uses, as a fallback, JsPeg — a pure-JavaScript JPEG decoder
+vendored under src/jspeg/ (decode path only). JsPeg is MIT-licensed
+(https://github.com/Alpaq92/JsPeg), a port of yigolden/JpegLibrary (also MIT);
+its inverse DCT is ported from stb_image (Sean Barrett), released into the public
+domain. JsPeg therefore carries no obligations beyond the MIT terms:
 
-  - The JPEG decoder core is Copyright (c) 2011 notmasteryet, licensed under the
-    Apache License 2.0 (full text in LICENSES/Apache-2.0.txt).
-  - The jpeg-js packaging and modifications (including the decode() entry point
-    used here) are Copyright (c) 2014 Eugene Ware, licensed under the
-    BSD-3-Clause license (full text in LICENSES/BSD-3-Clause.txt).
+    Copyright (c) 2019-2021 yigolden (original JpegLibrary)
+    Copyright (c) 2026 JsPeg contributors
+    Licensed under the MIT License — https://github.com/Alpaq92/JsPeg
 
-The file is unmodified except for ES-module export wrappers appended at the end.
 When the host provides a native JPEG codec (browser createImageBitmap), that is
-used in preference to this decoder.
+used in preference to JsPeg.
 
 DjVuLibre
 ---------

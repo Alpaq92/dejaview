@@ -1,0 +1,33 @@
+DejaView — provenance and third-party attributions
+===================================================
+
+DejaView decodes the DjVu image format, which is openly published. The decoder
+is built from public and permissively-licensed sources.
+
+ZP arithmetic coder, JB2, IW44 wavelet, BZZ
+-------------------------------------------
+These codecs implement the public DjVu format. They were cross-referenced
+against DjvuNet (https://github.com/DjvuNet/DjvuNet), an MIT-licensed .NET DjVu
+library. The ZP coder adaptation table (src/zp_table.js) is taken from DjvuNet.
+DjvuNet is distributed under the MIT License:
+
+    Copyright (c) 2014 Telavian
+    Copyright (c) 2017 Jacek Blaszczynski
+    Licensed under the MIT License — https://github.com/DjvuNet/DjvuNet
+
+MMR / Smmr
+----------
+The MMR decoder implements CCITT Group 4. Its run-length code tables
+(src/mmr_tables.js) are the public ITU-T T.6 / T.4 standard codes.
+
+IW44 wavelet
+------------
+The IW44 quantization steps and band structure follow the published IW44
+wavelet design (L. Bottou et al.) and match DjvuNet's.
+
+DjVuLibre
+---------
+DjVuLibre (GPL) was used ONLY as a conformance test oracle during development —
+i.e. to encode the sample .djvu files used to validate decoder output. No
+DjVuLibre source code is included in, derived into, or distributed with this
+project.

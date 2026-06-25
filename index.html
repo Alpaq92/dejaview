@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DejaView — pure-JS DjVu reader</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="toolbar">
+    <div class="group">
+      <button id="open" title="Open a .djvu file">Open…</button>
+      <input type="file" id="file" accept=".djvu,.djv,image/vnd.djvu" hidden />
+    </div>
+    <div class="group">
+      <button id="prev" title="Previous page">◀</button>
+      <input type="number" id="pageNum" min="1" value="1" />
+      <span id="pageCount">/ 0</span>
+      <button id="next" title="Next page">▶</button>
+    </div>
+    <div class="group">
+      <button id="zoomOut" title="Zoom out">−</button>
+      <span id="zoomLabel">100%</span>
+      <button id="zoomIn" title="Zoom in">+</button>
+      <button id="fitWidth" title="Fit width">Fit width</button>
+      <button id="fitPage" title="Fit page">Fit page</button>
+    </div>
+    <div class="group grow">
+      <input type="search" id="search" placeholder="Search text…" />
+      <button id="searchPrev" title="Previous match">▲</button>
+      <button id="searchNext" title="Next match">▼</button>
+      <span id="searchInfo"></span>
+    </div>
+    <div class="group">
+      <button id="toggleThumbs" title="Toggle thumbnails">☰</button>
+    </div>
+  </header>
+
+  <div id="body">
+    <aside id="thumbs" class="hidden"></aside>
+    <main id="viewport">
+      <div id="stage">
+        <canvas id="page"></canvas>
+        <div id="textLayer"></div>
+        <div id="highlights"></div>
+      </div>
+      <div id="dropHint">
+        <div>
+          <h1>DejaView</h1>
+          <p>A pure-JavaScript DjVu reader.</p>
+          <p>Drop a <code>.djvu</code> file here, or <button id="openInline">choose a file</button>.</p>
+          <p class="muted">No plugins, no server — everything decodes in your browser.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="status"></div>
+  <script type="module" src="src/viewer.js"></script>
+</body>
+</html>

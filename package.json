@@ -1,0 +1,11 @@
+{
+  "name": "dejaview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A pure-JavaScript DjVu reader for the browser (like PDF.js, but for DjVu).",
+  "scripts": {
+    "serve": "node tools/serve.mjs",
+    "test": "node tests/run.mjs"
+  }
+}

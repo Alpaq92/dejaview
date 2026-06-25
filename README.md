@@ -5,6 +5,9 @@ No plugins, no WebAssembly, no native binaries, no build step. Every layer of th
 format is decoded in plain ES modules and rendered to a `<canvas>`; decoding runs
 in a Web Worker so the UI never blocks.
 
+**▶ [Live demo](https://alpaq92.github.io/dejaview/?demo)** — runs entirely in
+your browser; pages never leave your machine.
+
 ```
 node tools/serve.mjs            # then open http://localhost:8080/
 node tools/serve.mjs            #          or http://localhost:8080/?demo  (loads the bundled sample)

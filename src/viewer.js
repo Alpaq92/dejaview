@@ -5,7 +5,7 @@
 
 const $ = (id) => document.getElementById(id);
 const els = {
-  open: $('open'), openInline: $('openInline'), file: $('file'),
+  open: $('open'), openInline: $('openInline'), loadSample: $('loadSample'), file: $('file'),
   prev: $('prev'), next: $('next'), pageNum: $('pageNum'), pageCount: $('pageCount'),
   zoomOut: $('zoomOut'), zoomIn: $('zoomIn'), zoomLabel: $('zoomLabel'),
   fitWidth: $('fitWidth'), fitPage: $('fitPage'),
@@ -91,6 +91,18 @@ async function loadBuffer(buf, name) {
 }
 
 const loadFile = async (file) => loadBuffer(await file.arrayBuffer(), file.name);
+
+// Load a document from a URL: the bundled sample (Load-sample button / ?demo)
+// or an explicit ?file=path.
+const SAMPLE_URL = 'samples/commons_example.djvu';
+function loadFromURL(url) {
+  const name = url.split('/').pop();
+  status('Loading ' + name + '…', true);
+  return fetch(url)
+    .then((r) => (r.ok ? r.arrayBuffer() : Promise.reject(new Error('not found'))))
+    .then((buf) => loadBuffer(buf, name))
+    .catch((e) => status('Could not load ' + name + ': ' + e.message));
+}
 
 // ---- fit / zoom ------------------------------------------------------------
 function applyFit() {
@@ -289,6 +301,7 @@ function setZoom(scale) {
 // ---- events ----------------------------------------------------------------
 els.open.addEventListener('click', () => els.file.click());
 if (els.openInline) els.openInline.addEventListener('click', () => els.file.click());
+if (els.loadSample) els.loadSample.addEventListener('click', () => loadFromURL(SAMPLE_URL));
 els.file.addEventListener('change', (e) => { if (e.target.files[0]) loadFile(e.target.files[0]); });
 
 els.prev.addEventListener('click', () => goto(state.pageIndex - 1));
@@ -336,11 +349,7 @@ function debounce(fn, ms) {
   return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
 }
 
-// Auto-load a sample with ?demo (or ?file=path) — handy for development.
+// Auto-load on ?demo (bundled sample) or ?file=path.
 const params = new URLSearchParams(location.search);
-const demo = params.get('file') || (params.has('demo') ? 'samples/commons_example.djvu' : null);
-if (demo) {
-  fetch(demo).then((r) => r.ok ? r.arrayBuffer() : Promise.reject(new Error('not found')))
-    .then((buf) => loadBuffer(buf, demo.split('/').pop()))
-    .catch((e) => status('Could not load ' + demo + ': ' + e.message));
-}
+const startUrl = params.get('file') || (params.has('demo') ? SAMPLE_URL : null);
+if (startUrl) loadFromURL(startUrl);

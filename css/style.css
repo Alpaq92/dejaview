@@ -126,6 +126,11 @@ input[type="search"] { flex: 1; }
   pointer-events: none;
 }
 #dropHint button { pointer-events: auto; }
+#dropHint .cta {
+  margin-top: 4px; padding: 9px 18px; font-weight: 600;
+  background: var(--accent); color: #10131a; border-color: transparent;
+}
+#dropHint .cta:hover { background: #79b0ff; }
 #dropHint h1 { color: var(--fg); margin: 0 0 8px; font-size: 28px; }
 #dropHint .muted { font-size: 12px; }
 #dropHint code { background: #00000040; padding: 1px 5px; border-radius: 4px; }

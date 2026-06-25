@@ -89,6 +89,9 @@ node tests/stress.mjs <file>  # decode every page of a document
 
 **MIT** — see [LICENSE](LICENSE).
 
+DejaView's decoder is verified against the published DjVu specification
+section-by-section — see [CONFORMANCE.md](CONFORMANCE.md).
+
 DjVu is an open, published format. DejaView's codecs implement that public format
 and were cross-referenced against **[DjvuNet](https://github.com/DjvuNet/DjvuNet)**
 (an MIT-licensed .NET DjVu library); the ZP coder table is taken from DjvuNet, the

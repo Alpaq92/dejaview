@@ -62,6 +62,17 @@ The decoder renders, with zero failures:
 
 Because those files are spec-conformant, correct output *is* conformance.
 
+Two layers that are effectively absent from public corpora are validated with
+**synthetic fixtures** instead:
+- **`Smmr` (MMR / CCITT-G4):** a known bitmap is encoded to a raw T.6 stream by a
+  test-only encoder, wrapped as an `Smmr` chunk, and decoded back pixel-identically
+  three ways — by `src/mmr.js`, by the full `DjVuDoc` container path, and,
+  independently, by pdf.js's `CCITTFaxDecoder` (so a round trip cannot hide a
+  shared error). All vertical/horizontal modes and makeup codes are exercised.
+  See `tests/test_smmr.mjs`.
+- **`BGjp` / `FGjp` (JPEG):** a real JPEG is wrapped as a `BGjp` background and
+  decoded + composited end-to-end. See `tests/test_bgjp.mjs`.
+
 ## Caveats (not correctness issues)
 - The HTML transcription omits **Table 9** (the 256 ZP state rows); the canonical
   PDF stream isn't text-extractable. The spec confirms the table's structure

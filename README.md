@@ -84,6 +84,7 @@ node tests/render_iw44.mjs 1  # IW44 background     -> refs/page1_bg.png
 node tests/render_page.mjs 1  # full colour compose -> refs/page1_full.png
 node tests/test_text.mjs      # hidden-text zones
 node tests/test_mmr.mjs       # MMR smoke tests
+node tests/test_smmr.mjs      # Smmr/G4 fixture: our encoder <-> src/mmr.js <-> pdf.js oracle
 node tests/test_pipeline.mjs  # full document API   -> refs/pipe_pageN.png
 node tests/stress.mjs <file>  # decode every page of a document
 ```

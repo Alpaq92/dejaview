@@ -20,6 +20,13 @@ MMR / Smmr
 The MMR decoder implements CCITT Group 4. Its run-length code tables
 (src/mmr_tables.js) are the public ITU-T T.6 / T.4 standard codes.
 
+The Smmr conformance test (tests/test_smmr.mjs) cross-checks the decoder against
+an independent G4 decoder, tests/ccitt_oracle.mjs — the pure-JS CCITTFaxDecoder
+vendored from pdf.js v3.11.174 (Copyright 2012 Mozilla Foundation), used under
+the Apache License 2.0 (LICENSES/Apache-2.0.txt). It is test-only (not part of
+the shipped library); the only change from upstream is replacing a pdf.js util
+import with local stubs.
+
 IW44 wavelet
 ------------
 The IW44 quantization steps and band structure follow the published IW44

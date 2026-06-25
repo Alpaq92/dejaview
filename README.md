@@ -88,7 +88,9 @@ node tests/stress.mjs <file>  # decode every page of a document
 ## License & provenance
 
 **MIT** — see [LICENSE](LICENSE). One vendored file, `src/jpeg.js` (the pure-JS
-JPEG fallback decoder), is **Apache-2.0**; see [NOTICE](NOTICE) and `LICENSES/`.
+JPEG fallback, from jpeg-js), is permissively dual-licensed — **Apache-2.0**
+(decoder core, © notmasteryet) and **BSD-3-Clause** (jpeg-js packaging, © Eugene
+Ware); see [NOTICE](NOTICE) and `LICENSES/`.
 
 DejaView's decoder is verified against the published DjVu specification
 section-by-section — see [CONFORMANCE.md](CONFORMANCE.md).

@@ -24,11 +24,14 @@
 //   in PostScript Level 2, Technical Note #5116
 //   (partners.adobe.com/public/developer/en/ps/sdk/5116.DCT_Filter.pdf)
 
-// Vendored from jpeg-js (https://github.com/jpeg-js/jpeg-js), (c) 2011 notmasteryet,
-// Apache License 2.0 (see LICENSES/Apache-2.0.txt and NOTICE). MODIFIED for DejaView:
-// ES-module exports (decodeJpeg / decodeJpegPixmap) are appended at the bottom of
-// this file; the decoder itself is unchanged. The legacy CommonJS/global glue near
-// the end is inert under ES modules and left in place.
+// Vendored from jpeg-js (https://github.com/jpeg-js/jpeg-js). Dual-provenance,
+// both permissive: the JPEG decoder core is (c) 2011 notmasteryet under the
+// Apache License 2.0 (LICENSES/Apache-2.0.txt); the jpeg-js packaging and edits
+// (e.g. the decode() wrapper) are (c) 2014 Eugene Ware under BSD-3-Clause
+// (LICENSES/BSD-3-Clause.txt). See NOTICE. MODIFIED for DejaView: ES-module
+// exports (decodeJpeg / decodeJpegPixmap) are appended at the bottom; the decoder
+// is otherwise unchanged, and the legacy CommonJS/global glue near the end is
+// inert under ES modules and left in place.
 
 var JpegImage = (function jpegImage() {
   "use strict";

@@ -28,11 +28,18 @@ wavelet design (L. Bottou et al.) and match DjvuNet's.
 JPEG layers (BGjp / FGjp)
 -------------------------
 JPEG-layer decoding uses, as a fallback, a vendored pure-JS decoder at
-src/jpeg.js — this is jpeg-js (https://github.com/jpeg-js/jpeg-js) by
-notmasteryet, used under the Apache License 2.0 (full text in
-LICENSES/Apache-2.0.txt). The decoder is unmodified except for ES-module export
-wrappers appended at the end of the file. When the host provides a native JPEG
-codec (browser createImageBitmap), that is used in preference.
+src/jpeg.js, taken from jpeg-js (https://github.com/jpeg-js/jpeg-js). That file
+is dual-provenance; both licenses apply and both are permissive:
+
+  - The JPEG decoder core is Copyright (c) 2011 notmasteryet, licensed under the
+    Apache License 2.0 (full text in LICENSES/Apache-2.0.txt).
+  - The jpeg-js packaging and modifications (including the decode() entry point
+    used here) are Copyright (c) 2014 Eugene Ware, licensed under the
+    BSD-3-Clause license (full text in LICENSES/BSD-3-Clause.txt).
+
+The file is unmodified except for ES-module export wrappers appended at the end.
+When the host provides a native JPEG codec (browser createImageBitmap), that is
+used in preference to this decoder.
 
 DjVuLibre
 ---------

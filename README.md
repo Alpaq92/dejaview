@@ -8,6 +8,10 @@ in a Web Worker so the UI never blocks.
 **▶ [Live demo](https://alpaq92.github.io/dejaview/)** — runs entirely in your
 browser; pages never leave your machine.
 
+<p align="center">
+  <img src="assets/preview.png" alt="DejaView rendering a DjVu document in the browser" width="820">
+</p>
+
 ```
 node tools/serve.mjs            # then open http://localhost:8080/
 node tools/serve.mjs            #          or http://localhost:8080/?demo  (loads the bundled sample)

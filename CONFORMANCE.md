@@ -53,10 +53,12 @@ and no DjVuLibre code is included in this project (see [NOTICE](NOTICE)).
 ## Empirical validation
 
 The decoder renders, with zero failures:
-- the multi-feature sample (`DJVM`, JB2 mask, IW44 colour, FGbz palette, hidden
-  text), and
-- **258 pages** across three real, djvulibre-encoded Wikisource books (36, 48,
-  and 174 pages; bilevel + FG44 colour + 600/650-dpi scans).
+- the multi-feature sample (`DJVM`, JB2 mask, IW44 colour, FGbz palette, hidden text),
+- **258 pages** across three real, djvulibre-encoded Wikisource books (36, 48, and
+  174 pages; bilevel + FG44 colour + 600/650-dpi scans), and
+- **162 shared-dictionary pages** exercising `INCL` + `Djbz`: the 71-page DjVu spec
+  itself (both INCL'd *and* inline dictionaries), an 85-page book whose pages each
+  INCL two dictionaries plus shared annotations, and a 6-page NAVM/FGbz document.
 
 Because those files are spec-conformant, correct output *is* conformance.
 
@@ -68,6 +70,6 @@ Because those files are spec-conformant, correct output *is* conformance.
 - The spec counts "15 integer contexts"; we use 16 named contexts (as the
   reference implementations do). Each coded quantity uses a consistent,
   independent context, so this is a grouping nuance, not a decode difference.
-- IW44 quantization is expressed here in one fixed-point scale; DjvuNet uses a 4×
-  scale that cancels in the output shift. Both yield identical samples; ours is
-  the empirically-validated one.
+- IW44 quantization: our `iw_quant` matches the spec's **Table 4** step-size table
+  exactly (`0x04000, 0x08000, 0x08000, 0x10000, …`). DjvuNet uses a 4× scale that
+  cancels in the output shift; ours is the spec-canonical one.

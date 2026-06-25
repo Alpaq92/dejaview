@@ -73,7 +73,10 @@ class JB2Decoder {
   constructor(zp, inheritedDict = null) {
     this.zp = zp;
     this.inheritedDict = inheritedDict;
-    this.inheritedShapes = inheritedDict ? inheritedDict.shapeCount : 0;
+    // Inherited shapes are used only if the stream codes an inherited-shape
+    // count (REQUIRED_DICT_OR_RESET); a dictionary passed in is otherwise
+    // ignored — matching the reference decoders. Set in codeInheritedShapeCount.
+    this.inheritedShapes = 0;
 
     // Number-coder decision-tree cells (node 0 is a dummy)
     const cap = CELLCHUNK + CELLEXTRA;
@@ -295,7 +298,10 @@ class JB2Decoder {
   codeInheritedShapeCount() {
     const size = this.codeNum(0, BIGPOSITIVE, this.inherited_shape_count_dist);
     if (size > 0 && !this.inheritedDict) throw new Error('JB2: inherited dictionary required');
-    if (this.inheritedDict && size !== this.inheritedShapes) throw new Error('JB2: bad inherited dictionary');
+    if (size > 0 && this.inheritedDict && size !== this.inheritedDict.shapeCount) {
+      throw new Error('JB2: bad inherited dictionary');
+    }
+    this.inheritedShapes = size;
   }
 
   codeComment() {

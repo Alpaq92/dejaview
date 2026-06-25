@@ -133,7 +133,12 @@ export class DjVuDoc {
     const smmr = form.child('Smmr');
     let jb2 = null, mask = null;
     if (sjbz) {
-      jb2 = decodeJB2Image(sjbz.bytes, this._buildInheritedDict(form));
+      let inherited = this._buildInheritedDict(form);
+      // A page (or its INCLs) may also carry its shape dictionary inline as a
+      // Djbz chunk in the same form; that dictionary applies to this Sjbz.
+      const ownDjbz = form.child('Djbz');
+      if (ownDjbz) inherited = decodeJB2Dict(ownDjbz.bytes, inherited);
+      jb2 = decodeJB2Image(sjbz.bytes, inherited);
       if (!info.width || !info.height) { info.width = jb2.image_columns; info.height = jb2.image_rows; }
     } else if (smmr) {
       mask = decodeMMR(smmr.bytes);

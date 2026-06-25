@@ -36,7 +36,7 @@ implemented here in pure JS:
 | Bitonal mask | `Sjbz` / `Djbz` | `src/jb2.js` | JB2 text/line layer (symbol dictionary + cross-coding) |
 | Bitonal mask (fax) | `Smmr` | `src/mmr.js` | CCITT Group 4 / ITU-T T.6 |
 | Colour / photo | `BG44` / `FG44` | `src/iw44.js` | IW44 progressive wavelet image |
-| Colour / photo (JPEG) | `BGjp` / `FGjp` | `src/worker.js` | decoded with the browser's native JPEG codec |
+| Colour / photo (JPEG) | `BGjp` / `FGjp` | `src/jpeg.js` | hybrid: native `createImageBitmap` when available, else a vendored pure-JS decoder |
 | Foreground colour | `FGbz` | `src/color.js` | DjVuPalette (per-blit colours) |
 | Hidden text | `TXTz` / `TXTa` | `src/text.js` | UTF-8 text + zone tree with bounding boxes |
 | Annotations | `ANTz` / `ANTa` | `src/annotations.js` | background colour, metadata |
@@ -87,7 +87,8 @@ node tests/stress.mjs <file>  # decode every page of a document
 
 ## License & provenance
 
-**MIT** — see [LICENSE](LICENSE).
+**MIT** — see [LICENSE](LICENSE). One vendored file, `src/jpeg.js` (the pure-JS
+JPEG fallback decoder), is **Apache-2.0**; see [NOTICE](NOTICE) and `LICENSES/`.
 
 DejaView's decoder is verified against the published DjVu specification
 section-by-section — see [CONFORMANCE.md](CONFORMANCE.md).

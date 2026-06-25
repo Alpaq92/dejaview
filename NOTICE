@@ -25,6 +25,15 @@ IW44 wavelet
 The IW44 quantization steps and band structure follow the published IW44
 wavelet design (L. Bottou et al.) and match DjvuNet's.
 
+JPEG layers (BGjp / FGjp)
+-------------------------
+JPEG-layer decoding uses, as a fallback, a vendored pure-JS decoder at
+src/jpeg.js — this is jpeg-js (https://github.com/jpeg-js/jpeg-js) by
+notmasteryet, used under the Apache License 2.0 (full text in
+LICENSES/Apache-2.0.txt). The decoder is unmodified except for ES-module export
+wrappers appended at the end of the file. When the host provides a native JPEG
+codec (browser createImageBitmap), that is used in preference.
+
 DjVuLibre
 ---------
 The codecs here are an independent JavaScript implementation of the public DjVu

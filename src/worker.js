@@ -5,6 +5,7 @@
 import { DjVuDoc } from './document.js';
 import { renderPage } from './render.js';
 import { collectZones, zoneText, ZoneType } from './text.js';
+import { decodeJpegPixmap } from './jpeg.js';
 
 let doc = null;
 const layerCache = new Map();
@@ -24,22 +25,12 @@ function words(textLayer) {
   return out;
 }
 
-// Decode a JPEG layer (BGjp/FGjp) with the browser's native codec, wrapped to
-// look like an IW44 image (getPixmap()). Decoded once, then cached on the layer.
-async function jpegPixmap(bytes) {
-  const bmp = await createImageBitmap(new Blob([bytes], { type: 'image/jpeg' }));
-  const oc = new OffscreenCanvas(bmp.width, bmp.height);
-  const cx = oc.getContext('2d');
-  cx.drawImage(bmp, 0, 0);
-  const id = cx.getImageData(0, 0, bmp.width, bmp.height);
-  const pm = { width: bmp.width, height: bmp.height, rgba: id.data };
-  bmp.close();
-  return { getPixmap: () => pm };
-}
-
+// Decode JPEG layers (BGjp/FGjp) via the hybrid decoder (native browser codec
+// when available, pure-JS fallback otherwise), wrapped as an IW44-like pixmap
+// and cached on the layer.
 async function ensureJpeg(l) {
-  if (l.bgJpeg && !l.bg) l.bg = await jpegPixmap(l.bgJpeg);
-  if (l.fgJpeg && !l.fgPixmap) l.fgPixmap = await jpegPixmap(l.fgJpeg);
+  if (l.bgJpeg && !l.bg) l.bg = await decodeJpegPixmap(l.bgJpeg);
+  if (l.fgJpeg && !l.fgPixmap) l.fgPixmap = await decodeJpegPixmap(l.fgJpeg);
   l.bgJpeg = l.fgJpeg = null;
 }
 
